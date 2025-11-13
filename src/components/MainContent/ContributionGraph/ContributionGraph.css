@@ -41,7 +41,6 @@
   font-size: var(--font-sm);
   color: var(--text-secondary);
   background: transparent;
-  border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background-color var(--transition-fast);

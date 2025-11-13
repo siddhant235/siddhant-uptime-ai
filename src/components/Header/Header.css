@@ -15,10 +15,10 @@
 }
 
 .header-container {
-  max-width: 1280px;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-md) var(--space-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -213,10 +213,10 @@
 }
 
 .profile-nav {
-  max-width: 1280px;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding: 0 var(--space-md);
   display: flex;
   gap: var(--space-md);
   overflow-x: auto;
@@ -353,6 +353,23 @@
     gap: var(--space-xs);
   }
 
+  /* Hide tabs beyond the first 2 on mobile */
+  .profile-nav-link:nth-child(n + 3) {
+    display: none;
+  }
+
+  /* Add more menu button on mobile */
+  .profile-nav::after {
+    content: "⋯";
+    display: flex;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+
   .profile-nav-link svg {
     width: 14px;
     height: 14px;
@@ -427,6 +444,11 @@
   .profile-nav-link {
     font-size: 12px;
     padding: var(--space-xs) 0;
+  }
+
+  /* Keep only 2 tabs visible on smallest screens */
+  .profile-nav-link:nth-child(n + 3) {
+    display: none;
   }
 
   .nav-badge {

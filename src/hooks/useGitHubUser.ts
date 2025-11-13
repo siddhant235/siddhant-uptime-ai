@@ -24,13 +24,24 @@ export const useGitHubUser = (username: string): UseGitHubUserResult => {
         setIsLoading(true);
         setError(null);
 
-        // Fetch user profile
+        // Fetch user profile, repositories, and organizations
         const userData = await githubApi.getUser(username);
-        const mappedProfile = mapGitHubUserToProfile(userData);
+        const reposData = await githubApi.getUserRepos(username, 6);
+        
+        // Fetch organizations (handle errors gracefully)
+        let orgsData = [];
+        try {
+          orgsData = await githubApi.getUserOrgs(username);
+        } catch (orgError) {
+          console.warn('Failed to fetch organizations:', orgError);
+          // Continue without organizations
+        }
+        
+        // Map profile with repo and org data
+        const mappedProfile = mapGitHubUserToProfile(userData, reposData, orgsData);
         setProfile(mappedProfile);
 
-        // Fetch user repositories
-        const reposData = await githubApi.getUserRepos(username, 6);
+        // Map repositories
         const mappedRepos = mapGitHubReposToRepositories(reposData);
         setRepositories(mappedRepos);
 

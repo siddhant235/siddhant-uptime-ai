@@ -4,6 +4,7 @@ import Footer from '../components/Footer/Footer';
 import ProfileSidebar from '../components/ProfileSidebar/ProfileSidebar';
 import MainContent from '../components/MainContent/MainContent';
 import { useGitHubUser } from '../hooks/useGitHubUser';
+import { useGitHubContributions } from '../hooks/useGitHubContributions';
 import { mockContributions } from '../data/mockContributions';
 import { mockActivities, mockActivityOverview } from '../data/mockActivity';
 import './ProfilePage.css';
@@ -14,6 +15,7 @@ const GITHUB_USERNAME = 'shreeramk';
 const ProfilePage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<string>('overview');
     const { profile, repositories, isLoading, error } = useGitHubUser(GITHUB_USERNAME);
+    const { contributions } = useGitHubContributions(GITHUB_USERNAME);
 
     if (isLoading) {
         return (
@@ -54,7 +56,7 @@ const ProfilePage: React.FC = () => {
                 {activeTab === 'overview' ? (
                     <MainContent
                         repositories={repositories}
-                        contributions={mockContributions}
+                        contributions={contributions || mockContributions}
                         activities={mockActivities}
                         activityOverview={mockActivityOverview}
                     />

@@ -53,11 +53,11 @@ export const mockActivities: Activity[] = [
     month: 'October 2025',
     date: '2025-10',
     repositories: [
-      { name: 'UptimeAI/uptime_webapp', count: 16, url: 'https://github.com/UptimeAI/uptime_webapp' },
-      { name: 'UptimeAI/uptime_ml', count: 5, url: 'https://github.com/UptimeAI/uptime_ml' },
-      { name: 'UptimeAI/uptime_scripts', count: 4, url: 'https://github.com/UptimeAI/uptime_scripts' },
-      { name: 'UptimeAI/uptime_engine', count: 3, url: 'https://github.com/UptimeAI/uptime_engine' },
-      { name: 'UptimeAI/uptime_ml_encrypted', count: 1, url: 'https://github.com/UptimeAI/uptime_ml_encrypted' }
+      { name: 'UptimeAI/uptime_webapp', count: 17, merged: 16, open: 1, url: 'https://github.com/UptimeAI/uptime_webapp' },
+      { name: 'UptimeAI/uptime_ml', count: 6, merged: 6, open: 0, url: 'https://github.com/UptimeAI/uptime_ml' },
+      { name: 'UptimeAI/uptime_scripts', count: 4, merged: 4, open: 0, url: 'https://github.com/UptimeAI/uptime_scripts' },
+      { name: 'UptimeAI/uptime_engine', count: 1, merged: 1, open: 0, url: 'https://github.com/UptimeAI/uptime_engine' },
+      { name: 'UptimeAI/uptime_ml_encrypted', count: 1, merged: 1, open: 0, url: 'https://github.com/UptimeAI/uptime_ml_encrypted' }
     ]
   }
 ];

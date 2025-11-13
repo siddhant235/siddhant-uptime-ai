@@ -3,12 +3,16 @@ export interface Profile {
     name: string;
     avatar: string;
     bio: {
+        description?: string;
         title: string;
+        company?: string;
         skills: string[];
         location: string;
         email: string;
         website: string;
         twitter?: string;
+        linkedin?: string;
+        github?: string;
     };
     stats: {
         followers: number;

@@ -2,6 +2,8 @@ export interface ActivityRepository {
   name: string;
   count: number;
   url: string;
+  merged?: number;
+  open?: number;
 }
 
 export interface Activity {

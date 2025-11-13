@@ -5,7 +5,9 @@ export const mockProfile: Profile = {
   name: 'Shreeram Kushwaha',
   avatar: 'https://avatars.githubusercontent.com/u/19864447?v=4',
   bio: {
-    title: 'Director of Engineering @UptimeAI',
+    description: 'Building scalable systems and leading engineering teams. Passionate about distributed systems and cloud architecture.',
+    title: 'Director of Engineering',
+    company: 'UptimeAI',
     skills: [
       'Python',
       'Angular',
@@ -24,7 +26,9 @@ export const mockProfile: Profile = {
     location: 'Bangalore, India',
     email: 'kushwaha.shreeram@gmail.com',
     website: 'http://shreeramkushwaha.com',
-    twitter: '@poon_first'
+    twitter: '@poon_first',
+    linkedin: 'shreeram-kushwaha',
+    github: 'shreeram'
   },
   stats: {
     followers: 11,
@@ -32,22 +36,22 @@ export const mockProfile: Profile = {
   },
   achievements: [
     {
-      id: '1',
-      icon: '🏆',
-      name: 'Achievement Badge 1',
-      description: 'Arctic Code Vault Contributor'
+      id: 'yolo',
+      icon: 'https://github.githubassets.com/assets/yolo-default-be0bbff04951.png',
+      name: 'YOLO',
+      description: '5+ years on GitHub'
     },
     {
-      id: '2',
-      icon: '⭐',
-      name: 'Achievement Badge 2',
-      description: 'Pull Shark'
+      id: 'pull-shark',
+      icon: 'https://github.githubassets.com/assets/pull-shark-default-498c279a747d.png',
+      name: 'Pull Shark',
+      description: '8 merged pull requests'
     },
     {
-      id: '3',
-      icon: '🎯',
-      name: 'Achievement Badge 3',
-      description: 'Quickdraw'
+      id: 'quickdraw',
+      icon: 'https://github.githubassets.com/assets/quickdraw-default--light-medium-5450fadcbe37.png',
+      name: 'Quickdraw',
+      description: 'Opened an issue or pull request within 5 minutes of another user'
     }
   ],
   organizations: [

@@ -13,8 +13,25 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ contributionData,
   const [hoveredDay, setHoveredDay] = useState<{ date: string; count: number } | null>(null);
 
   const currentYearData = contributionData.years.find(y => y.year === selectedYear);
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const allMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const weekDays = ['Mon', 'Wed', 'Fri'];
+
+  // Calculate which months to display based on the actual data range
+  const getMonthLabels = () => {
+    if (!currentYearData || !currentYearData.weeks || currentYearData.weeks.length === 0) {
+      return allMonths;
+    }
+
+    // Get the first date from the data
+    const firstDate = new Date(currentYearData.weeks[0].days[0].date);
+    const startMonth = firstDate.getMonth(); // 0-11
+
+    // Rotate the months array to start from the correct month
+    const rotatedMonths = [...allMonths.slice(startMonth), ...allMonths.slice(0, startMonth)];
+    return rotatedMonths;
+  };
+
+  const months = getMonthLabels();
 
   const getLevelColor = (level: 0 | 1 | 2 | 3 | 4): string => {
     const colors = {
@@ -137,9 +154,9 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ contributionData,
           {activityOverview.organizations.length > 0 && (
             <div className="organizations-chips">
               {activityOverview.organizations.map((org) => (
-                <a 
-                  key={org.username} 
-                  href={org.url} 
+                <a
+                  key={org.username}
+                  href={org.url}
                   className="org-chip"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -191,13 +208,13 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ contributionData,
                       <stop offset="100%" stopColor="var(--accent-green)" stopOpacity="0.08" />
                     </linearGradient>
                   </defs>
-                  
+
                   {/* Vertical axis */}
                   <line x1="150" y1="40" x2="150" y2="260" stroke="var(--border-default)" strokeWidth="1.5" />
-                  
+
                   {/* Horizontal axis */}
                   <line x1="40" y1="150" x2="260" y2="150" stroke="var(--border-default)" strokeWidth="1.5" />
-                  
+
                   {/* Calculate positions based on correct mapping:
                       - Top (y-): Code review
                       - Left (x-): Commits (83%)
@@ -209,7 +226,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ contributionData,
                     const commitsX = 150 - (activityOverview.codeReview.commits * 1.0); // Left
                     const pullRequestsY = 150 + (activityOverview.codeReview.pullRequests * 1.0); // Bottom
                     const issuesX = 150 + (activityOverview.codeReview.issues * 1.0); // Right
-                    
+
                     return (
                       <>
                         {/* Filled gradient area between Commits (left) and Pull Requests (bottom) */}
@@ -220,97 +237,97 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ contributionData,
                             stroke="none"
                           />
                         )}
-                        
+
                         {/* Code review line (top) */}
                         {activityOverview.codeReview.codeReview > 0 && (
                           <>
-                            <line 
-                              x1="150" 
-                              y1="150" 
-                              x2="150" 
+                            <line
+                              x1="150"
+                              y1="150"
+                              x2="150"
                               y2={codeReviewY}
-                              stroke="var(--accent-green)" 
+                              stroke="var(--accent-green)"
                               strokeWidth="3"
                               strokeLinecap="round"
                             />
                             <circle cx="150" cy={codeReviewY} r="6" fill="white" stroke="var(--accent-green)" strokeWidth="2.5" />
                           </>
                         )}
-                        
+
                         {/* Commits line (left) */}
                         {activityOverview.codeReview.commits > 0 && (
                           <>
-                            <line 
-                              x1="150" 
-                              y1="150" 
+                            <line
+                              x1="150"
+                              y1="150"
                               x2={commitsX}
-                              y2="150" 
-                              stroke="var(--accent-green)" 
+                              y2="150"
+                              stroke="var(--accent-green)"
                               strokeWidth="3"
                               strokeLinecap="round"
                             />
                             <circle cx={commitsX} cy="150" r="6" fill="white" stroke="var(--accent-green)" strokeWidth="2.5" />
                           </>
                         )}
-                        
+
                         {/* Pull requests line (bottom) */}
                         {activityOverview.codeReview.pullRequests > 0 && (
                           <>
-                            <line 
-                              x1="150" 
-                              y1="150" 
-                              x2="150" 
+                            <line
+                              x1="150"
+                              y1="150"
+                              x2="150"
                               y2={pullRequestsY}
-                              stroke="var(--accent-green)" 
+                              stroke="var(--accent-green)"
                               strokeWidth="3"
                               strokeLinecap="round"
                             />
                             <circle cx="150" cy={pullRequestsY} r="6" fill="white" stroke="var(--accent-green)" strokeWidth="2.5" />
                           </>
                         )}
-                        
+
                         {/* Issues line (right) */}
                         {activityOverview.codeReview.issues > 0 && (
                           <>
-                            <line 
-                              x1="150" 
-                              y1="150" 
+                            <line
+                              x1="150"
+                              y1="150"
                               x2={issuesX}
-                              y2="150" 
-                              stroke="var(--accent-green)" 
+                              y2="150"
+                              stroke="var(--accent-green)"
                               strokeWidth="3"
                               strokeLinecap="round"
                             />
                             <circle cx={issuesX} cy="150" r="6" fill="white" stroke="var(--accent-green)" strokeWidth="2.5" />
                           </>
                         )}
-                        
+
                         {/* Center dot - hollow */}
                         <circle cx="150" cy="150" r="6" fill="white" stroke="var(--accent-green)" strokeWidth="2.5" />
                       </>
                     );
                   })()}
                 </svg>
-                
+
                 {/* Labels with correct positioning */}
                 <div className="chart-labels">
                   {/* Code review - Top */}
                   <div className="chart-label label-top">
                     <span className="label-text">Code review</span>
                   </div>
-                  
+
                   {/* Commits - Left */}
                   <div className="chart-label label-left">
                     <span className="label-percentage">{activityOverview.codeReview.commits}%</span>
                     <span className="label-text">Commits</span>
                   </div>
-                  
+
                   {/* Pull requests - Bottom */}
                   <div className="chart-label label-bottom">
                     <span className="label-percentage">{activityOverview.codeReview.pullRequests}%</span>
                     <span className="label-text">Pull requests</span>
                   </div>
-                  
+
                   {/* Issues - Right */}
                   <div className="chart-label label-right">
                     <span className="label-text">Issues</span>

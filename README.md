@@ -43,12 +43,31 @@ A **pixel-perfect replica** of GitHub's profile overview page built with **React
 # Install dependencies
 npm install
 
+# Setup environment variables
+cp .env.example .env
+# Edit .env and add your GitHub token
+
 # Start development server
 npm run dev
 
 # Open in browser
 # Visit: http://localhost:5173
 ```
+
+### 🔑 GitHub Token Setup
+
+To fetch real contribution data, you need a GitHub Personal Access Token:
+
+1. Go to [GitHub Settings → Tokens](https://github.com/settings/tokens)
+2. Click "Generate new token (classic)"
+3. Select scopes: `read:user`, `read:org`
+4. Copy the generated token
+5. Add it to your `.env` file:
+   ```
+   VITE_GITHUB_TOKEN=your_token_here
+   ```
+
+**Note:** The `.env` file is gitignored and your token will remain secure.
 
 ---
 

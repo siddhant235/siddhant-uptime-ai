@@ -1,51 +1,25 @@
 .contribution-activity {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: 4px;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
 }
 
-/* Header section with title and year filter */
+/* Header section with title */
 .activity-header-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--border-default);
+  /* margin-bottom: var(--space-md); */
 }
 
 .section-title {
-  font-size: var(--font-xl);
-  font-weight: var(--font-semibold);
+  font-size: 16px;
+  font-weight: 500;
   color: var(--text-primary);
   margin: 0;
-}
-
-.year-filter {
-  display: flex;
-  gap: var(--space-xs);
-}
-
-.year-btn {
-  padding: var(--space-xs) var(--space-sm);
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  font-size: var(--font-sm);
-  font-weight: var(--font-medium);
-  cursor: pointer;
-  transition: color var(--transition-fast);
-}
-
-.year-btn:hover {
-  color: var(--text-link);
-}
-
-.year-btn.active {
-  color: var(--text-primary);
-  font-weight: var(--font-semibold);
 }
 
 /* Timeline */
@@ -53,10 +27,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xxl);
-  padding: var(--space-md) 0;
 }
 
-.timeline-item {
+.timeline-month-group {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -66,13 +39,13 @@
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+  margin-bottom: 0;
 }
 
 .month-title {
-  font-size: var(--font-md);
-  font-weight: var(--font-semibold);
-  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
   margin: 0;
   white-space: nowrap;
 }
@@ -83,19 +56,42 @@
   background-color: var(--border-default);
 }
 
+/* Connector line between month header and first activity */
+.month-connector-line {
+  width: 2px;
+  height: 16px;
+  margin-left: 15px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-default) 0,
+    var(--border-default) 3px,
+    transparent 3px,
+    transparent 6px
+  );
+}
+
 .timeline-content {
   position: relative;
-  padding-left: var(--space-lg);
+  padding-left: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
 }
 
 /* Vertical timeline line */
 .timeline-line {
   position: absolute;
   left: 15px;
-  top: 40px;
-  bottom: -30px;
+  top: 0;
+  bottom: 0;
   width: 2px;
-  background-color: var(--border-default);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-default) 0,
+    var(--border-default) 3px,
+    transparent 3px,
+    transparent 6px
+  );
 }
 
 /* Activity block */
@@ -107,6 +103,8 @@
 
 .activity-icon-wrapper {
   flex-shrink: 0;
+  position: absolute;
+  left: -48px;
 }
 
 .activity-icon {
@@ -115,7 +113,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   border: 2px solid var(--border-default);
   border-radius: var(--radius-full);
   position: relative;
@@ -141,14 +139,14 @@
 }
 
 .activity-text {
-  font-size: var(--font-sm);
+  font-size: 14px;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .activity-text strong {
   color: var(--text-primary);
-  font-weight: var(--font-semibold);
+  font-weight: 600;
 }
 
 .collapse-btn {
@@ -159,7 +157,7 @@
   width: 24px;
   height: 24px;
   background: transparent;
-  border: 1px solid var(--border-default);
+  border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background-color var(--transition-fast);
@@ -170,7 +168,7 @@
   background-color: var(--bg-secondary);
 }
 
-.collapse-btn svg {
+.collapse-btn .collapse-icon {
   fill: var(--text-secondary);
 }
 
@@ -179,6 +177,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .repo-item {
@@ -188,10 +198,10 @@
 }
 
 .repo-name {
-  font-size: var(--font-sm);
+  font-size: 14px;
   color: var(--text-link);
   text-decoration: none;
-  font-weight: var(--font-medium);
+  font-weight: 600;
 }
 
 .repo-name:hover {
@@ -223,8 +233,9 @@
   font-size: 12px;
   color: var(--text-secondary);
   white-space: nowrap;
-  min-width: 80px;
+  min-width: 90px;
   text-align: right;
+  font-weight: 400;
 }
 
 /* Created repositories section */
@@ -308,25 +319,25 @@
 }
 
 .show-more-btn {
-  padding: var(--space-sm) var(--space-lg);
+  padding: 8px 16px;
   background-color: transparent;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-sm);
+  border: 1px solid rgba(31, 35, 40, 0.15);
+  border-radius: 6px;
   color: var(--text-link);
-  font-size: var(--font-sm);
-  font-weight: var(--font-medium);
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .show-more-btn:hover {
   background-color: var(--bg-secondary);
-  border-color: var(--text-secondary);
+  border-color: rgba(31, 35, 40, 0.25);
 }
 
 .guide-text {
-  font-size: var(--font-sm);
-  color: var(--text-secondary);
+  font-size: 12px;
+  color: #57606a;
   text-align: center;
   margin: 0;
 }
@@ -346,6 +357,7 @@
   flex-direction: column;
   gap: var(--space-sm);
   margin-top: var(--space-md);
+  animation: slideDown 0.2s ease-out;
 }
 
 .pr-repo-item {
@@ -356,10 +368,10 @@
 }
 
 .pr-repo-name {
-  font-size: var(--font-sm);
+  font-size: 14px;
   color: var(--text-secondary);
   text-decoration: none;
-  font-weight: var(--font-normal);
+  font-weight: 400;
 }
 
 .pr-repo-name:hover {
@@ -376,35 +388,47 @@
 .status-badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
+  gap: 4px;
   font-size: 12px;
-  font-weight: var(--font-medium);
+  font-weight: 400;
   white-space: nowrap;
+  color: var(--text-secondary);
 }
 
-.status-badge.merged {
-  background-color: #8b5cf6;
-  color: white;
+.status-badge .badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-weight: 500;
 }
 
-.status-badge.open {
-  background-color: #22c55e;
-  color: white;
+.status-badge.merged .badge-count {
+  background-color: #8250df;
+  color: #ffffff;
+}
+
+.status-badge.open .badge-count {
+  background-color: #1a7f37;
+  color: #ffffff;
 }
 
 .collapse-btn-small {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1px;
   width: 20px;
-  height: 20px;
+  height: 28px;
   background: transparent;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background-color var(--transition-fast);
-  padding: 0;
+  padding: 3px 0;
   flex-shrink: 0;
 }
 
@@ -412,25 +436,26 @@
   background-color: var(--bg-secondary);
 }
 
-.collapse-btn-small svg {
+.collapse-btn-small .collapse-arrow {
   fill: var(--text-secondary);
-  width: 12px;
-  height: 12px;
+}
+
+.collapse-separator-small {
+  width: 1px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-default) 0,
+    var(--border-default) 1px,
+    transparent 1px,
+    transparent 2px
+  );
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .activity-header-section {
-    flex-direction: row;
-    gap: var(--space-sm);
-  }
-
   .section-title {
     font-size: var(--font-lg);
-  }
-
-  .year-btn {
-    font-size: 12px;
   }
 
   .activity-timeline {
@@ -452,15 +477,29 @@
 
   .month-header {
     gap: var(--space-sm);
-    margin-bottom: var(--space-md);
+    margin-bottom: 0;
+  }
+
+  .month-connector-line {
+    height: 14px;
+    margin-left: 12px;
   }
 
   .timeline-content {
-    padding-left: var(--space-md);
+    padding-left: 40px;
   }
 
   .timeline-line {
-    left: 13px;
+    left: 12px;
+  }
+
+  .activity-icon-wrapper {
+    left: -40px;
+  }
+
+  .activity-icon {
+    width: 28px;
+    height: 28px;
   }
 
   .pr-repo-item {
@@ -475,7 +514,12 @@
 
   .status-badge {
     font-size: 11px;
-    padding: 1px 6px;
+    gap: 3px;
+  }
+
+  .status-badge .badge-count {
+    min-width: 18px;
+    padding: 1px 5px;
   }
 
   .commit-count {
@@ -493,19 +537,8 @@
 }
 
 @media (max-width: 480px) {
-  .activity-header-section {
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-  }
-
   .section-title {
     font-size: var(--font-md);
-    width: 100%;
-  }
-
-  .year-filter {
-    width: 100%;
-    justify-content: flex-start;
   }
 
   .activity-timeline {
@@ -520,6 +553,18 @@
     font-size: 12px;
   }
 
+  .timeline-content {
+    padding-left: 36px;
+  }
+
+  .timeline-line {
+    left: 11px;
+  }
+
+  .activity-icon-wrapper {
+    left: -36px;
+  }
+
   .activity-icon {
     width: 24px;
     height: 24px;
@@ -531,30 +576,27 @@
   }
 
   .collapse-btn {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 
-  .collapse-btn svg {
-    width: 12px;
-    height: 12px;
+  .collapse-btn .collapse-icon {
+    width: 14px;
+    height: 14px;
   }
 
   .month-header {
     gap: var(--space-xs);
-    margin-bottom: var(--space-sm);
+    margin-bottom: 0;
+  }
+
+  .month-connector-line {
+    height: 12px;
+    margin-left: 11px;
   }
 
   .month-title {
     font-size: 12px;
-  }
-
-  .timeline-content {
-    padding-left: var(--space-sm);
-  }
-
-  .timeline-line {
-    left: 11px;
   }
 
   .pr-repo-name {
@@ -563,17 +605,22 @@
 
   .status-badge {
     font-size: 10px;
+    gap: 2px;
+  }
+
+  .status-badge .badge-count {
+    min-width: 16px;
     padding: 1px 4px;
   }
 
-  .collapse-btn-small {
-    width: 18px;
-    height: 18px;
+  .collapse-btn {
+    width: 20px;
+    height: 20px;
   }
 
-  .collapse-btn-small svg {
-    width: 10px;
-    height: 10px;
+  .collapse-btn .collapse-icon {
+    width: 12px;
+    height: 12px;
   }
 
   .activity-block {
@@ -615,4 +662,3 @@
     font-size: 11px;
   }
 }
-
