@@ -4,7 +4,6 @@ import { ContributionData } from '../../types/contribution.types';
 import { Activity, ActivityOverview } from '../../types/activity.types';
 import PopularRepositories from './PopularRepositories/PopularRepositories';
 import ContributionGraph from './ContributionGraph/ContributionGraph';
-import ActivityOverviewComponent from './ActivityOverview/ActivityOverview';
 import ContributionActivity from './ContributionActivity/ContributionActivity';
 import './MainContent.css';
 

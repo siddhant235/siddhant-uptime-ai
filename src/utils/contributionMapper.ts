@@ -1,4 +1,4 @@
-import { ContributionData, Week, Day } from '../types/contribution.types';
+import { ContributionData, ContributionWeek, ContributionDay } from '../types/contribution.types';
 
 /**
  * Maps GitHub GraphQL contributions data to our ContributionData format
@@ -10,11 +10,11 @@ export const mapGitHubContributionsToData = (graphqlData: any): ContributionData
   }
 
   const calendar = graphqlData.data.user.contributionsCollection.contributionCalendar;
-  const weeks: Week[] = [];
+  const weeks: ContributionWeek[] = [];
   
   // Process each week from GitHub data
   calendar.weeks.forEach((week: any) => {
-    const days: Day[] = week.contributionDays.map((day: any) => {
+    const days: ContributionDay[] = week.contributionDays.map((day: any) => {
       // Convert contribution count to level (0-4)
       let level: 0 | 1 | 2 | 3 | 4 = 0;
       const count = day.contributionCount;
@@ -43,10 +43,6 @@ export const mapGitHubContributionsToData = (graphqlData: any): ContributionData
     years.push({
       year: year,
       total: year === currentYear ? calendar.totalContributions : 0,
-      range: {
-        start: weeks[0]?.days[0]?.date || '',
-        end: weeks[weeks.length - 1]?.days[weeks[weeks.length - 1].days.length - 1]?.date || ''
-      },
       weeks: year === currentYear ? weeks : []
     });
   }
@@ -62,7 +58,7 @@ export const mapGitHubContributionsToData = (graphqlData: any): ContributionData
  * Creates last 12 months of data with consistent patterns
  */
 export const generateMockContributions = (): ContributionData => {
-  const weeks: Week[] = [];
+  const weeks: ContributionWeek[] = [];
   const today = new Date();
   const startDate = new Date(today);
   startDate.setFullYear(today.getFullYear() - 1);
@@ -78,7 +74,7 @@ export const generateMockContributions = (): ContributionData => {
   // Generate weeks until we reach today (up to 54 weeks to cover full year)
   let weekIndex = 0;
   while (weekIndex < 54 && currentDate <= today) {
-    const days: Day[] = [];
+    const days: ContributionDay[] = [];
 
     for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
       // Only include days up to today
@@ -135,10 +131,6 @@ export const generateMockContributions = (): ContributionData => {
       {
         year: currentYear,
         total: totalContributions,
-        range: {
-          start: weeks[0]?.days[0]?.date || '',
-          end: weeks[weeks.length - 1]?.days[weeks[weeks.length - 1].days.length - 1]?.date || ''
-        },
         weeks
       }
     ]
