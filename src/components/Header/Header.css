@@ -1,0 +1,436 @@
+.github-header {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-default);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Main header bar */
+.header-main {
+  background-color: var(--bg-primary);
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  overflow-x: hidden;
+}
+
+/* Left Section */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  width: 32px;
+  height: 32px;
+}
+
+.menu-btn:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+.menu-btn svg {
+  fill: var(--text-secondary);
+  width: 16px;
+  height: 16px;
+}
+
+.github-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.github-logo:hover {
+  opacity: 0.8;
+}
+
+.github-logo svg {
+  fill: var(--text-primary);
+}
+
+.username-text {
+  font-size: var(--font-md);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Right Section */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  max-width: 300px;
+  width: 100%;
+  min-height: 28px;
+  transition: border-color var(--transition-fast);
+}
+
+.search-bar:focus-within {
+  border-color: var(--accent-blue);
+}
+
+.search-icon {
+  fill: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 14px;
+  min-width: 0;
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-shortcut {
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 2px 6px;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+/* Icon buttons */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.icon-btn:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+.icon-btn svg {
+  fill: var(--text-secondary);
+  width: 16px;
+  height: 16px;
+}
+
+/* Inbox notification dot */
+.inbox-btn {
+  position: relative;
+}
+
+.notification-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: #0969da;
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary);
+}
+
+/* User avatar */
+.user-menu {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  transition: opacity var(--transition-fast);
+}
+
+.user-menu:hover {
+  opacity: 0.8;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  display: block;
+}
+
+/* Profile Navigation */
+.profile-nav-container {
+  background-color: var(--bg-primary);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.profile-nav {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.profile-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.profile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) 0;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.profile-nav-link:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-default);
+}
+
+.profile-nav-link.active {
+  color: var(--text-primary);
+  font-weight: var(--font-semibold);
+  border-bottom-color: var(--accent-orange);
+}
+
+.profile-nav-link svg {
+  fill: currentColor;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.nav-badge {
+  padding: 1px 6px;
+  background-color: var(--bg-tertiary);
+  border-radius: 2em;
+  font-size: 11px;
+  font-weight: var(--font-semibold);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .header-container {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .search-bar {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .header-left {
+    gap: var(--space-sm);
+  }
+
+  .username-text {
+    font-size: 14px;
+  }
+
+  .search-bar {
+    max-width: 200px;
+  }
+
+  .github-logo svg {
+    height: 28px;
+    width: 28px;
+  }
+
+  .header-right {
+    gap: var(--space-sm);
+  }
+
+  .icon-btn {
+    padding: 5px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .icon-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .menu-btn {
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+  }
+
+  .menu-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .user-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .notification-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .profile-nav-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .profile-nav {
+    padding: 0 var(--space-md);
+    min-width: max-content;
+  }
+
+  .profile-nav-link {
+    padding: var(--space-sm) 0;
+    font-size: var(--font-sm);
+    gap: var(--space-xs);
+  }
+
+  .profile-nav-link svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .nav-badge {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-container {
+    gap: var(--space-xs);
+  }
+
+  .search-bar {
+    max-width: 150px;
+  }
+
+  .search-input {
+    font-size: 12px;
+  }
+
+  .username-text {
+    display: none;
+  }
+
+  /* Show only essential icons on mobile */
+  .icon-btn:not(.inbox-btn) {
+    display: none;
+  }
+
+  .icon-btn.inbox-btn,
+  .user-menu {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .header-left {
+    gap: var(--space-xs);
+  }
+
+  .search-bar {
+    display: none;
+  }
+
+  .github-logo svg {
+    height: 24px;
+    width: 24px;
+  }
+
+  .header-right {
+    gap: var(--space-xs);
+  }
+
+  .user-avatar {
+    width: 24px;
+    height: 24px;
+  }
+
+  .profile-nav {
+    padding: 0 var(--space-sm);
+    gap: var(--space-sm);
+  }
+
+  .profile-nav-link {
+    font-size: 12px;
+    padding: var(--space-xs) 0;
+  }
+
+  .nav-badge {
+    font-size: 9px;
+    padding: 1px 3px;
+  }
+}

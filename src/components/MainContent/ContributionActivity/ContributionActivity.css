@@ -1,0 +1,618 @@
+.contribution-activity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Header section with title and year filter */
+.activity-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.section-title {
+  font-size: var(--font-xl);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.year-filter {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.year-btn {
+  padding: var(--space-xs) var(--space-sm);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.year-btn:hover {
+  color: var(--text-link);
+}
+
+.year-btn.active {
+  color: var(--text-primary);
+  font-weight: var(--font-semibold);
+}
+
+/* Timeline */
+.activity-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxl);
+  padding: var(--space-md) 0;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.month-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.month-title {
+  font-size: var(--font-md);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.month-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-default);
+}
+
+.timeline-content {
+  position: relative;
+  padding-left: var(--space-lg);
+}
+
+/* Vertical timeline line */
+.timeline-line {
+  position: absolute;
+  left: 15px;
+  top: 40px;
+  bottom: -30px;
+  width: 2px;
+  background-color: var(--border-default);
+}
+
+/* Activity block */
+.activity-block {
+  display: flex;
+  gap: var(--space-md);
+  position: relative;
+}
+
+.activity-icon-wrapper {
+  flex-shrink: 0;
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-default);
+  border-radius: var(--radius-full);
+  position: relative;
+  z-index: 1;
+}
+
+.activity-icon svg {
+  fill: var(--text-secondary);
+}
+
+.activity-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.activity-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.activity-text {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.activity-text strong {
+  color: var(--text-primary);
+  font-weight: var(--font-semibold);
+}
+
+.collapse-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  padding: 0;
+}
+
+.collapse-btn:hover {
+  background-color: var(--bg-secondary);
+}
+
+.collapse-btn svg {
+  fill: var(--text-secondary);
+}
+
+/* Repository list with commit bars */
+.repository-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.repo-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.repo-name {
+  font-size: var(--font-sm);
+  color: var(--text-link);
+  text-decoration: none;
+  font-weight: var(--font-medium);
+}
+
+.repo-name:hover {
+  text-decoration: underline;
+}
+
+.repo-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.commit-bar-wrapper {
+  flex: 1;
+  height: 6px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.commit-bar {
+  height: 100%;
+  background-color: var(--accent-green);
+  border-radius: var(--radius-sm);
+  transition: width var(--transition-fast);
+}
+
+.commit-count {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Created repositories section */
+.created-repos-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding-left: 44px;
+}
+
+.created-repo-item {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+}
+
+.repo-icon-wrapper {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.repo-icon-wrapper svg {
+  fill: var(--text-secondary);
+}
+
+.created-repo-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+}
+
+.created-repo-name {
+  font-size: var(--font-sm);
+  color: var(--text-link);
+  text-decoration: none;
+  font-weight: var(--font-medium);
+}
+
+.created-repo-name:hover {
+  text-decoration: underline;
+}
+
+.created-repo-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.repo-language {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.language-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background-color: #563d7c; /* Purple for CSS */
+}
+
+.repo-date {
+  color: var(--text-tertiary);
+}
+
+/* Show more section */
+.show-more-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--border-default);
+  margin-top: var(--space-lg);
+}
+
+.show-more-btn {
+  padding: var(--space-sm) var(--space-lg);
+  background-color: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-link);
+  font-size: var(--font-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.show-more-btn:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+.guide-text {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+.guide-link {
+  color: var(--text-link);
+  text-decoration: none;
+}
+
+.guide-link:hover {
+  text-decoration: underline;
+}
+
+/* Pull request repository list */
+.pr-repository-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.pr-repo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) 0;
+}
+
+.pr-repo-name {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: var(--font-normal);
+}
+
+.pr-repo-name:hover {
+  color: var(--text-link);
+  text-decoration: underline;
+}
+
+.pr-status-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: var(--font-medium);
+  white-space: nowrap;
+}
+
+.status-badge.merged {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.status-badge.open {
+  background-color: #22c55e;
+  color: white;
+}
+
+.collapse-btn-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.collapse-btn-small:hover {
+  background-color: var(--bg-secondary);
+}
+
+.collapse-btn-small svg {
+  fill: var(--text-secondary);
+  width: 12px;
+  height: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .activity-header-section {
+    flex-direction: row;
+    gap: var(--space-sm);
+  }
+
+  .section-title {
+    font-size: var(--font-lg);
+  }
+
+  .year-btn {
+    font-size: 12px;
+  }
+
+  .activity-timeline {
+    gap: var(--space-xl);
+  }
+
+  .month-title {
+    font-size: var(--font-sm);
+  }
+
+  .activity-text {
+    font-size: 13px;
+  }
+
+  .activity-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .month-header {
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .timeline-content {
+    padding-left: var(--space-md);
+  }
+
+  .timeline-line {
+    left: 13px;
+  }
+
+  .pr-repo-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .pr-status-badges {
+    align-self: flex-end;
+  }
+
+  .status-badge {
+    font-size: 11px;
+    padding: 1px 6px;
+  }
+
+  .commit-count {
+    font-size: 11px;
+    min-width: 70px;
+  }
+
+  .created-repos-list {
+    padding-left: 36px;
+  }
+
+  .guide-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .activity-header-section {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .section-title {
+    font-size: var(--font-md);
+    width: 100%;
+  }
+
+  .year-filter {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .activity-timeline {
+    gap: var(--space-lg);
+  }
+
+  .month-title {
+    font-size: 12px;
+  }
+
+  .activity-text {
+    font-size: 12px;
+  }
+
+  .activity-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .activity-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .collapse-btn {
+    width: 20px;
+    height: 20px;
+  }
+
+  .collapse-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .month-header {
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  .month-title {
+    font-size: 12px;
+  }
+
+  .timeline-content {
+    padding-left: var(--space-sm);
+  }
+
+  .timeline-line {
+    left: 11px;
+  }
+
+  .pr-repo-name {
+    font-size: 12px;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+
+  .collapse-btn-small {
+    width: 18px;
+    height: 18px;
+  }
+
+  .collapse-btn-small svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .activity-block {
+    gap: var(--space-sm);
+  }
+
+  .repo-name {
+    font-size: 12px;
+  }
+
+  .commit-bar-wrapper {
+    height: 5px;
+  }
+
+  .commit-count {
+    font-size: 10px;
+    min-width: 60px;
+  }
+
+  .created-repos-list {
+    padding-left: 28px;
+    gap: var(--space-sm);
+  }
+
+  .created-repo-name {
+    font-size: 12px;
+  }
+
+  .created-repo-meta {
+    font-size: 11px;
+  }
+
+  .show-more-btn {
+    font-size: 12px;
+    padding: var(--space-xs) var(--space-md);
+  }
+
+  .guide-text {
+    font-size: 11px;
+  }
+}
+

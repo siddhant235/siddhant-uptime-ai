@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+# OS Files
+.DS_Store
+Thumbs.db
+

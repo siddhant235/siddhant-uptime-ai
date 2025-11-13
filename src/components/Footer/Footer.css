@@ -1,0 +1,136 @@
+.github-footer {
+  width: 100%;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-default);
+  padding: var(--space-xl) 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  order: 2;
+}
+
+.footer-link {
+  font-size: var(--font-sm);
+  color: var(--text-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.footer-link:hover {
+  color: var(--text-link-hover);
+  text-decoration: underline;
+}
+
+.footer-branding {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  order: 1;
+  flex-shrink: 0;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  transition: opacity var(--transition-fast);
+}
+
+.footer-logo:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-logo svg {
+  fill: var(--text-secondary);
+}
+
+.footer-copyright {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .footer-container {
+    padding: 0 var(--space-md);
+  }
+
+  .footer-nav {
+    gap: var(--space-sm) var(--space-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .github-footer {
+    padding: var(--space-lg) 0;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-md);
+  }
+
+  .footer-nav {
+    order: 1;
+    justify-content: center;
+    gap: var(--space-xs) var(--space-sm);
+  }
+
+  .footer-branding {
+    order: 2;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .footer-link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .github-footer {
+    padding: var(--space-md) 0;
+  }
+
+  .footer-container {
+    padding: 0 var(--space-md);
+    gap: var(--space-md);
+  }
+
+  .footer-nav {
+    gap: 6px var(--space-xs);
+  }
+
+  .footer-link {
+    font-size: 11px;
+  }
+
+  .footer-logo svg {
+    height: 20px;
+    width: 20px;
+  }
+
+  .footer-copyright {
+    font-size: 11px;
+  }
+}
+
