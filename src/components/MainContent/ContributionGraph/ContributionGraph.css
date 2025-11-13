@@ -301,7 +301,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-xl);
-  align-items: start;
+  align-items: stretch;
+  position: relative;
+}
+
+.activity-row::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--border-default);
+  transform: translateX(-50%);
 }
 
 .activity-text-section {
@@ -309,17 +321,6 @@
   flex-direction: column;
   gap: var(--space-sm);
   padding-right: var(--space-lg);
-  position: relative;
-}
-
-.activity-text-section::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: -48px;
-  bottom: -48px;
-  width: 1px;
-  background-color: var(--border-default);
 }
 
 .activity-section-title {
@@ -477,6 +478,7 @@
     border-radius: var(--radius-md);
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
+    overflow: visible;
   }
 
   .graph-header {
@@ -487,6 +489,9 @@
   .graph-container {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   .year-timeline {
@@ -507,6 +512,7 @@
 
   .activity-section {
     grid-row: 4 / 5;
+    overflow: visible;
   }
 
   .activity-row {
@@ -514,22 +520,35 @@
     gap: var(--space-lg);
   }
 
+  .activity-row::after {
+    display: none;
+  }
+
   .activity-text-section {
     padding-right: 0;
     padding-bottom: var(--space-md);
   }
 
-  .activity-text-section::after {
-    display: none;
-  }
-
   .code-review-section {
     order: -1;
+    align-self: center;
   }
 
   .code-review-chart-container {
     width: 200px;
     height: 200px;
+  }
+
+  .organizations-chips {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: var(--space-xs);
+  }
+
+  .contributed-text {
+    font-size: var(--font-sm);
   }
 
   .graph-header {
@@ -627,12 +646,17 @@
 
 @media (max-width: 480px) {
   .contribution-graph {
-    padding: var(--space-sm) var(--space-md);
-    margin: 0 calc(var(--space-md) * -1);
+    padding: var(--space-sm) 0;
+    margin: 0;
     border-radius: 0;
     border-left: none;
     border-right: none;
     grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .graph-header {
+    padding: 0 var(--space-md);
   }
 
   .timeline-year {
@@ -651,8 +675,10 @@
   }
 
   .graph-wrapper {
-    margin: 0 calc(var(--space-md) * -1);
+    margin: 0;
     padding: 0 var(--space-md);
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .month-labels {
@@ -684,5 +710,36 @@
   .legend-box {
     width: 10px;
     height: 10px;
+  }
+
+  .activity-section {
+    padding: 0 var(--space-md);
+  }
+
+  .code-review-chart-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .organizations-chips {
+    padding: 0;
+    margin: 0 calc(var(--space-md) * -1);
+    padding: 0 var(--space-md);
+  }
+
+  .org-chip {
+    font-size: 12px;
+  }
+
+  .contributed-text {
+    font-size: 13px;
+  }
+
+  .activity-section-title {
+    font-size: var(--font-md);
+  }
+
+  .year-timeline {
+    padding: var(--space-md);
   }
 }

@@ -8,11 +8,11 @@ interface HeaderProps {
   onTabChange: (tab: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ 
-  username = 'shreeramk', 
+const Header: React.FC<HeaderProps> = ({
+  username = 'shreeramk',
   avatar = 'https://avatars.githubusercontent.com/u/19864447?v=4',
-  activeTab, 
-  onTabChange 
+  activeTab,
+  onTabChange
 }) => {
   const handleTabClick = (e: React.MouseEvent<HTMLAnchorElement>, tab: string) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({
                 <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path>
               </svg>
             </button>
-            
+
             <a href="/" className="github-logo" aria-label="GitHub">
               <svg height="32" viewBox="0 0 16 16" width="32">
                 <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
@@ -47,20 +47,55 @@ const Header: React.FC<HeaderProps> = ({
               <svg className="search-icon" viewBox="0 0 16 16" width="16" height="16">
                 <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.5 4.5 0 1 0-8.997.002A4.5 4.5 0 0 0 11.5 7Z"></path>
               </svg>
-              <input 
-                type="text" 
-                placeholder="Type / to search" 
+              <input
+                type="text"
+                placeholder="Type / to search"
                 className="search-input"
               />
               <span className="search-shortcut">/</span>
             </div>
 
-            {/* Copilot Icon */}
-            <button className="icon-btn" aria-label="GitHub Copilot" title="GitHub Copilot">
-              <svg viewBox="0 0 16 16" width="16" height="16">
-                <path d="M7.99 0C3.56 0 0 3.612 0 8.061c0 3.359 2.108 6.212 5.033 7.231.078.024.136.003.175-.041a.187.187 0 0 0 .058-.135c0-.068-.003-.607-.003-1.166-2.056.353-2.548-.495-2.709-.949-.091-.233-.486-.95-.832-1.142-.284-.154-.69-.533-.01-.543.639-.01 1.096.59 1.248.836.73 1.232 1.896.884 2.362.671.072-.53.283-.885.515-1.088-1.805-.206-3.69-.905-3.69-4.016 0-.884.314-1.614.832-2.184-.083-.206-.362-1.042.078-2.168 0 0 .678-.216 2.227.833a7.55 7.55 0 0 1 2.029-.275c.688 0 1.38.093 2.029.275 1.548-1.059 2.227-.833 2.227-.833.44 1.126.162 1.962.079 2.168.518.57.832 1.29.832 2.184 0 3.121-1.895 3.81-3.7 4.016.294.255.548.745.548 1.506 0 1.089-.01 1.963-.01 2.232 0 .052.02.105.058.136.04.044.097.064.175.04C13.892 14.273 16 11.411 16 8.061 16 3.612 12.44 0 7.99 0Z"></path>
+            {/* Copilot Button with Dropdown */}
+            <div className="header-btn-group">
+              <button className="header-btn-main" aria-label="GitHub Copilot" title="GitHub Copilot">
+                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+                  <path d="M7.998 15.035c-4.562 0-7.873-2.914-7.998-3.749V9.338c.085-.628.677-1.686 1.588-2.065.013-.07.024-.143.036-.218.029-.183.06-.384.126-.612-.201-.508-.254-1.084-.254-1.656 0-.87.128-1.769.693-2.484.579-.733 1.494-1.124 2.724-1.261 1.206-.134 2.262.034 2.944.765.05.053.096.108.139.165.044-.057.094-.112.143-.165.682-.731 1.738-.899 2.944-.765 1.23.137 2.145.528 2.724 1.261.566.715.693 1.614.693 2.484 0 .572-.053 1.148-.254 1.656.066.228.098.429.126.612.012.076.024.148.037.218.924.385 1.522 1.471 1.591 2.095v1.872c0 .766-3.351 3.795-8.002 3.795Zm0-1.485c2.28 0 4.584-1.11 5.002-1.433V7.862l-.023-.116c-.49.21-1.075.291-1.727.291-1.146 0-2.059-.327-2.71-.991A3.222 3.222 0 0 1 8 6.303a3.24 3.24 0 0 1-.544.743c-.65.664-1.563.991-2.71.991-.652 0-1.236-.081-1.727-.291l-.023.116v4.255c.419.323 2.722 1.433 5.002 1.433ZM6.762 2.83c-.193-.206-.637-.413-1.682-.297-1.019.113-1.479.404-1.713.7-.247.312-.369.789-.369 1.554 0 .793.129 1.171.308 1.371.162.181.519.379 1.442.379.853 0 1.339-.235 1.638-.54.315-.322.527-.827.617-1.553.117-.935-.037-1.395-.241-1.614Zm4.155-.297c-1.044-.116-1.488.091-1.681.297-.204.219-.359.679-.242 1.614.091.726.303 1.231.618 1.553.299.305.784.54 1.638.54.922 0 1.28-.198 1.442-.379.179-.2.308-.578.308-1.371 0-.765-.123-1.242-.37-1.554-.233-.296-.693-.587-1.713-.7Z"></path>
+                  <path d="M6.25 9.037a.75.75 0 0 1 .75.75v1.501a.75.75 0 0 1-1.5 0V9.787a.75.75 0 0 1 .75-.75Zm4.25.75v1.501a.75.75 0 0 1-1.5 0V9.787a.75.75 0 0 1 1.5 0Z"></path>
+                </svg>
+              </button>
+              <span className="btn-separator"></span>
+              <button className="header-btn-dropdown" aria-label="Copilot options">
+                <svg viewBox="0 0 16 16" width="16" height="16">
+                  <path d="M4.427 7.427l3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427Z"></path>
+                </svg>
+              </button>
+            </div>
+
+            {/* Vertical Separator */}
+            <div className="header-separator"></div>
+
+            {/* Create New Button with Dropdown */}
+            <div className="header-btn-group">
+              <button className="header-btn-main" aria-label="Create new" title="Create new">
+                <svg viewBox="0 0 16 16" width="12" height="16">
+                  <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
+                </svg>
+              </button>
+              <button className="header-btn-dropdown" aria-label="Create options">
+                <svg viewBox="0 0 16 16" width="16" height="16">
+                  <path d="M4.427 7.427l3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427Z"></path>
+                </svg>
+              </button>
+            </div>
+
+            {/* Issues Button */}
+            <button className="header-btn-single" aria-label="Issues" title="Issues">
+              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
               </svg>
             </button>
+
 
             {/* Pull Request Icon */}
             <button className="icon-btn" aria-label="Pull requests" title="Pull requests">
@@ -79,9 +114,9 @@ const Header: React.FC<HeaderProps> = ({
 
             {/* Profile Picture */}
             <button className="user-menu" aria-label="User menu">
-              <img 
+              <img
                 src={avatar}
-                alt="User avatar" 
+                alt="User avatar"
                 className="user-avatar"
               />
             </button>
@@ -92,8 +127,8 @@ const Header: React.FC<HeaderProps> = ({
       {/* Profile Navigation Tabs */}
       <div className="profile-nav-container">
         <div className="profile-nav">
-          <a 
-            href="#" 
+          <a
+            href="#"
             className={`profile-nav-link ${activeTab === 'overview' ? 'active' : ''}`}
             onClick={(e) => handleTabClick(e, 'overview')}
           >
@@ -102,8 +137,8 @@ const Header: React.FC<HeaderProps> = ({
             </svg>
             Overview
           </a>
-          <a 
-            href="#" 
+          <a
+            href="#"
             className={`profile-nav-link ${activeTab === 'repositories' ? 'active' : ''}`}
             onClick={(e) => handleTabClick(e, 'repositories')}
           >
@@ -113,8 +148,8 @@ const Header: React.FC<HeaderProps> = ({
             Repositories
             <span className="nav-badge">31</span>
           </a>
-          <a 
-            href="#" 
+          <a
+            href="#"
             className={`profile-nav-link ${activeTab === 'projects' ? 'active' : ''}`}
             onClick={(e) => handleTabClick(e, 'projects')}
           >
@@ -123,8 +158,8 @@ const Header: React.FC<HeaderProps> = ({
             </svg>
             Projects
           </a>
-          <a 
-            href="#" 
+          <a
+            href="#"
             className={`profile-nav-link ${activeTab === 'packages' ? 'active' : ''}`}
             onClick={(e) => handleTabClick(e, 'packages')}
           >
@@ -134,8 +169,8 @@ const Header: React.FC<HeaderProps> = ({
             Packages
             <span className="nav-badge">5</span>
           </a>
-          <a 
-            href="#" 
+          <a
+            href="#"
             className={`profile-nav-link ${activeTab === 'stars' ? 'active' : ''}`}
             onClick={(e) => handleTabClick(e, 'stars')}
           >

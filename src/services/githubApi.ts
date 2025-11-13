@@ -66,10 +66,11 @@ export const githubApi = {
   },
 
   async getUserContributions(username: string) {
-    // Calculate date range for last year
+    // Calculate date range for last year (including current date)
     const today = new Date();
     const oneYearAgo = new Date(today);
     oneYearAgo.setFullYear(today.getFullYear() - 1);
+    oneYearAgo.setDate(today.getDate() + 1); // Start from day after one year ago
 
     const fromDate = oneYearAgo.toISOString().split('T')[0];
     const toDate = today.toISOString().split('T')[0];

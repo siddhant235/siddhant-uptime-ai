@@ -37,19 +37,23 @@ export const mapGitHubContributionsToData = (graphqlData: any): ContributionData
 
   const currentYear = new Date().getFullYear();
 
+  // Generate multiple years for the timeline (even though we only have data for one year)
+  const years = [];
+  for (let year = currentYear; year >= 2013; year--) {
+    years.push({
+      year: year,
+      total: year === currentYear ? calendar.totalContributions : 0,
+      range: {
+        start: weeks[0]?.days[0]?.date || '',
+        end: weeks[weeks.length - 1]?.days[weeks[weeks.length - 1].days.length - 1]?.date || ''
+      },
+      weeks: year === currentYear ? weeks : []
+    });
+  }
+
   return {
     totalContributions: calendar.totalContributions,
-    years: [
-      {
-        year: currentYear,
-        total: calendar.totalContributions,
-        range: {
-          start: weeks[0]?.days[0]?.date || '',
-          end: weeks[weeks.length - 1]?.days[weeks[weeks.length - 1].days.length - 1]?.date || ''
-        },
-        weeks
-      }
-    ]
+    years
   };
 };
 
@@ -71,8 +75,9 @@ export const generateMockContributions = (): ContributionData => {
   let totalContributions = 0;
   let currentDate = new Date(startDate);
 
-  // Generate 53 weeks of data (covers a full year)
-  for (let weekIndex = 0; weekIndex < 53; weekIndex++) {
+  // Generate weeks until we reach today (up to 54 weeks to cover full year)
+  let weekIndex = 0;
+  while (weekIndex < 54 && currentDate <= today) {
     const days: Day[] = [];
 
     for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
@@ -119,6 +124,7 @@ export const generateMockContributions = (): ContributionData => {
     if (days.length > 0) {
       weeks.push({ days });
     }
+    weekIndex++;
   }
 
   const currentYear = new Date().getFullYear();

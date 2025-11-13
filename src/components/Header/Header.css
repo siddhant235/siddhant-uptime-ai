@@ -86,7 +86,7 @@
 .header-right {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-xs);
   flex: 1;
   justify-content: flex-end;
 }
@@ -143,15 +143,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 5px;
   background: transparent;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
   position: relative;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 .icon-btn:hover {
@@ -161,8 +161,105 @@
 
 .icon-btn svg {
   fill: var(--text-secondary);
-  width: 16px;
+  width: 14px;
+  height: 14px;
+}
+
+/* Header button groups (for Copilot and Create buttons) */
+.header-btn-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  height: 28px;
+}
+
+.header-btn-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  background: transparent;
+  border: none;
+  border-right: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  height: 100%;
+}
+
+.header-btn-main:hover {
+  background-color: var(--bg-secondary);
+}
+
+.header-btn-main svg {
+  fill: var(--text-secondary);
+  width: 14px;
+  height: 14px;
+}
+
+.btn-separator {
+  width: 1px;
   height: 16px;
+  background-color: var(--border-default);
+  flex-shrink: 0;
+}
+
+.header-btn-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 5px;
+  background: transparent;
+  border: none;
+  border-left: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  height: 100%;
+  width: 20px;
+}
+
+.header-btn-dropdown:hover {
+  background-color: var(--bg-secondary);
+}
+
+.header-btn-dropdown svg {
+  fill: var(--text-secondary);
+  width: 10px;
+  height: 10px;
+}
+
+/* Single bordered button (for Issues) */
+.header-btn-single {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  height: 28px;
+}
+
+.header-btn-single:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+.header-btn-single svg {
+  fill: var(--text-secondary);
+  width: 14px;
+  height: 14px;
+}
+
+/* Vertical separator */
+.header-separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-default);
+  flex-shrink: 0;
 }
 
 /* Inbox notification dot */
@@ -198,8 +295,8 @@
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-default);
   display: block;
@@ -311,6 +408,24 @@
     height: 28px;
   }
 
+  .header-btn-group {
+    height: 28px;
+  }
+
+  .header-btn-main,
+  .header-btn-dropdown {
+    padding: 5px 6px;
+  }
+
+  .header-btn-single {
+    height: 28px;
+    padding: 5px 6px;
+  }
+
+  .header-separator {
+    height: 20px;
+  }
+
   .icon-btn svg {
     width: 14px;
     height: 14px;
@@ -388,6 +503,13 @@
 
   .search-bar {
     max-width: 150px;
+  }
+
+  /* Hide new header buttons on very small screens */
+  .header-btn-group,
+  .header-separator,
+  .header-btn-single {
+    display: none;
   }
 
   .search-input {
