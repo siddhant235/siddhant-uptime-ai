@@ -1,5 +1,19 @@
 const GITHUB_API_BASE = 'https://api.github.com';
 
+// Helper to get auth headers
+const getAuthHeaders = () => {
+  const headers: HeadersInit = {
+    'Accept': 'application/vnd.github.v3+json',
+  };
+
+  const token = import.meta.env.VITE_GITHUB_TOKEN;
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  return headers;
+};
+
 export interface GitHubUser {
   login: string;
   id: number;
@@ -20,7 +34,9 @@ export interface GitHubUser {
 
 export const githubApi = {
   async getUser(username: string): Promise<GitHubUser> {
-    const response = await fetch(`${GITHUB_API_BASE}/users/${username}`);
+    const response = await fetch(`${GITHUB_API_BASE}/users/${username}`, {
+      headers: getAuthHeaders()
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch user: ${response.statusText}`);
@@ -31,7 +47,10 @@ export const githubApi = {
 
   async getUserRepos(username: string, perPage: number = 6) {
     const response = await fetch(
-      `${GITHUB_API_BASE}/users/${username}/repos?sort=updated&per_page=${perPage}`
+      `${GITHUB_API_BASE}/users/${username}/repos?sort=updated&per_page=${perPage}`,
+      {
+        headers: getAuthHeaders()
+      }
     );
 
     if (!response.ok) {
@@ -43,7 +62,10 @@ export const githubApi = {
 
   async getUserEvents(username: string, perPage: number = 10) {
     const response = await fetch(
-      `${GITHUB_API_BASE}/users/${username}/events/public?per_page=${perPage}`
+      `${GITHUB_API_BASE}/users/${username}/events/public?per_page=${perPage}`,
+      {
+        headers: getAuthHeaders()
+      }
     );
 
     if (!response.ok) {
@@ -55,7 +77,10 @@ export const githubApi = {
 
   async getUserOrgs(username: string) {
     const response = await fetch(
-      `${GITHUB_API_BASE}/users/${username}/orgs`
+      `${GITHUB_API_BASE}/users/${username}/orgs`,
+      {
+        headers: getAuthHeaders()
+      }
     );
 
     if (!response.ok) {
@@ -95,12 +120,14 @@ export const githubApi = {
       }
     `;
 
+    const headers = {
+      ...getAuthHeaders(),
+      'Content-Type': 'application/json'
+    };
+
     const response = await fetch('https://api.github.com/graphql', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`
-      },
+      headers,
       body: JSON.stringify({
         query,
         variables: {
